@@ -1,0 +1,88 @@
+<html>
+<head>
+<style>
+textarea {
+	background-color: #EEE;
+	font-size: 12px;
+	font-family: monospace;
+	padding: 0.75em 1.5em;
+	border: 1px solid #DDD;
+	margin: 1em 0px;
+	display: block;
+	white-space: pre;
+}
+</style>
+</head>
+<body>
+<table width="100%">
+<tr><td>
+<label> Engine: </label>
+<input id="engine_dot" type="radio" name="engine_selection" value="dot" checked="yes"/> graphviz-dot(flow chart)
+<input id="engine_mscgen" type="radio" name="engine_selection" value="mscgen" /> mscgen(sequence chart) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/examples/"> Examples </a> <br/>
+</td>
+<td width="70%">
+Preview:
+</td>
+</tr>
+<tr valign="top"><td>
+<textarea id="codeblock" rows="20" cols="80"></textarea>
+<button name="render" value="render" onclick="do_render()"> Render </button>
+<div id="htmlcode_container"></div>
+</td>
+<td>
+<div><img id="graph_canvas"> </img> </div>
+<iframe id="errormessage" frameborder="0" width="100%"></iframe>
+</td></tr>
+</table>
+<hr/>
+<p align="center">feedback: <a href="mailto:dinghaifeng@baidu.com">dinghaifeng@baidu.com</a></p>
+
+<script>
+function do_render()
+{
+	engine = "";
+	var radiobuttons = document.getElementsByName("engine_selection");
+	for(i = 0; i < radiobuttons.length; i++) {
+		if(radiobuttons[i].checked) {
+			engine = radiobuttons[i].value;
+		}
+	}
+	code = document.getElementById("codeblock").value;
+	// alert(engine + "\n" + code;
+	url = "http://{{ HTTP_HOST }}/api/?engine=" + encodeURIComponent(engine) + "&code=" + encodeURIComponent(code);
+	document.getElementById("graph_canvas").src = url;
+
+	gethtmlcode(code, url);
+
+	geterrormessage(url);
+}
+
+function gethtmlcode(code, url)
+{
+	var container = document.getElementById("htmlcode_container");
+	for(i = container.childNodes.length - 1; i >= 0; i--) {
+		container.removeChild(container.childNodes.item(i));
+	}
+	var newElement = document.createElement("hr");
+	container.appendChild(newElement);
+	newElement = document.createElement("p");
+	newElement.innerText = "HTML code block:";
+	container.appendChild(newElement);
+	newElement = document.createElement("textarea");
+	newElement.rows = "20";
+	newElement.cols = "80";
+	newElement.value = "<img src=\"" + url + "\" />\n" + "<literal><!--\n" + code + "\n--></literal>\n";
+	container.appendChild(newElement);
+}
+
+function geterrormessage(url)
+{
+	iframe_element = document.getElementById("errormessage");
+	iframe_element.src = url + "&action=geterrormsg";
+}
+
+
+</script>
+</body>
+</html>

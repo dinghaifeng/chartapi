@@ -1,0 +1,284 @@
+<html>
+<head>
+<style>
+.chartapi_hidden { position: absolute; top: -999em; }
+pre {
+	background-color: #EEE;
+	font-size: 12px;
+	font-family: monospace;
+	padding: 0.75em 1.5em;
+	border: 1px solid #DDD;
+	margin: 1em 0px;
+	display: block;
+	white-space: pre;
+}
+</style>
+</head>
+<body>
+<h1>Chart API Examples</h1>
+
+<div>
+<div id="chartapi_example1_engine" class="chartapi_hidden">dot</div>
+<pre id="chartapi_example1_code" class="chartapi_hidden">
+digraph G {
+
+	subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+		a0 -> a1 -> a2 -> a3;
+		label = "process #1";
+	}
+
+	subgraph cluster_1 {
+		node [style=filled];
+		b0 -> b1 -> b2 -> b3;
+		label = "process #2";
+		color=blue
+	}
+	start -> a0;
+	start -> b0;
+	a1 -> b3;
+	b2 -> a3;
+	a3 -> a0;
+	a3 -> end;
+	b3 -> end;
+
+	start [shape=Mdiamond];
+	end [shape=Msquare];
+}
+</pre>
+<div id="chartapi_example1" name="chartapi_canvas">  </div>
+</div>
+
+<hr/>
+<div>
+<div id="chartapi_example5_engine" class="chartapi_hidden">dot</div>
+<pre id="chartapi_example5_code" class="chartapi_hidden">
+digraph finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; LR_0 LR_3 LR_4 LR_8;
+	node [shape = circle];
+	LR_0 -> LR_2 [ label = "SS(B)" ];
+	LR_0 -> LR_1 [ label = "SS(S)" ];
+	LR_1 -> LR_3 [ label = "S($end)" ];
+	LR_2 -> LR_6 [ label = "SS(b)" ];
+	LR_2 -> LR_5 [ label = "SS(a)" ];
+	LR_2 -> LR_4 [ label = "S(A)" ];
+	LR_5 -> LR_7 [ label = "S(b)" ];
+	LR_5 -> LR_5 [ label = "S(a)" ];
+	LR_6 -> LR_6 [ label = "S(b)" ];
+	LR_6 -> LR_5 [ label = "S(a)" ];
+	LR_7 -> LR_8 [ label = "S(b)" ];
+	LR_7 -> LR_5 [ label = "S(a)" ];
+	LR_8 -> LR_6 [ label = "S(b)" ];
+	LR_8 -> LR_5 [ label = "S(a)" ];
+}
+</pre>
+<div id="chartapi_example5" name="chartapi_canvas">  </div>
+</div>
+
+<hr/>
+<div>
+<div id="chartapi_example6_engine" class="chartapi_hidden">dot</div>
+<pre id="chartapi_example6_code" class="chartapi_hidden">
+digraph g {
+graph [
+rankdir = "LR"
+];
+node [
+fontsize = "16"
+shape = "ellipse"
+];
+edge [
+];
+"node0" [
+label = "<f0> 0x10ba8| <f1>"
+shape = "record"
+];
+"node1" [
+label = "<f0> 0xf7fc4380| <f1> | <f2> |-1"
+shape = "record"
+];
+"node2" [
+label = "<f0> 0xf7fc44b8| | |2"
+shape = "record"
+];
+"node3" [
+label = "<f0> 3.43322790286038071e-06|44.79998779296875|0"
+shape = "record"
+];
+"node4" [
+label = "<f0> 0xf7fc4380| <f1> | <f2> |2"
+shape = "record"
+];
+"node5" [
+label = "<f0> (nil)| | |-1"
+shape = "record"
+];
+"node6" [
+label = "<f0> 0xf7fc4380| <f1> | <f2> |1"
+shape = "record"
+];
+"node7" [
+label = "<f0> 0xf7fc4380| <f1> | <f2> |2"
+shape = "record"
+];
+"node8" [
+label = "<f0> (nil)| | |-1"
+shape = "record"
+];
+"node9" [
+label = "<f0> (nil)| | |-1"
+shape = "record"
+];
+"node10" [
+label = "<f0> (nil)| <f1> | <f2> |-1"
+shape = "record"
+];
+"node11" [
+label = "<f0> (nil)| <f1> | <f2> |-1"
+shape = "record"
+];
+"node12" [
+label = "<f0> 0xf7fc43e0| | |1"
+shape = "record"
+];
+"node0":f0 -> "node1":f0 [
+id = 0
+];
+"node0":f1 -> "node2":f0 [
+id = 1
+];
+"node1":f0 -> "node3":f0 [
+id = 2
+];
+"node1":f1 -> "node4":f0 [
+id = 3
+];
+"node1":f2 -> "node5":f0 [
+id = 4
+];
+"node4":f0 -> "node3":f0 [
+id = 5
+];
+"node4":f1 -> "node6":f0 [
+id = 6
+];
+"node4":f2 -> "node10":f0 [
+id = 7
+];
+"node6":f0 -> "node3":f0 [
+id = 8
+];
+"node6":f1 -> "node7":f0 [
+id = 9
+];
+"node6":f2 -> "node9":f0 [
+id = 10
+];
+"node7":f0 -> "node3":f0 [
+id = 11
+];
+"node7":f1 -> "node1":f0 [
+id = 12
+];
+"node7":f2 -> "node8":f0 [
+id = 13
+];
+"node10":f1 -> "node11":f0 [
+id = 14
+];
+"node10":f2 -> "node12":f0 [
+id = 15
+];
+"node11":f2 -> "node1":f0 [
+id = 16
+];
+}
+</pre>
+<div id="chartapi_example6" name="chartapi_canvas">  </div>
+</div>
+
+<hr/>
+<div>
+<div id="chartapi_example2_engine" class="chartapi_hidden">mscgen</div>
+<pre id="chartapi_example2_code" class="chartapi_hidden">
+# MSC for some fictional process
+msc {
+  a,b,c;
+
+  a->b [ label = "ab()" ] ;
+  b->c [ label = "bc(TRUE)"];
+  c=>c [ label = "process(1)" ];
+  c=>c [ label = "process(2)" ];
+  ...;
+  c=>c [ label = "process(n)" ];
+  c=>c [ label = "process(END)" ];
+  a<<=c [ label = "callback()"];
+  ---  [ label = "If more to run", ID="*" ];
+  a->a [ label = "next()"];
+  a->c [ label = "ac1()\nac2()"];
+  b<-c [ label = "cb(TRUE)"];
+  b->b [ label = "stalled(...)"];
+  a<-b [ label = "ab() = FALSE"];
+}
+</pre>
+<div id="chartapi_example2" name="chartapi_canvas">  </div>
+</div>
+
+<hr/>
+<div>
+<div id="chartapi_example3_engine" class="chartapi_hidden">mscgen</div>
+<pre id="chartapi_example3_code" class="chartapi_hidden">
+# Fictional client-server protocol
+msc {
+ arcgradient = 8;
+
+ a [label="Client"],b [label="Server"];
+
+ a=>b [label="data1"];
+ a-xb [label="data2"];
+ a=>b [label="data3"];
+ a<=b [label="ack1, nack2"];
+ a=>b [label="data2", arcskip="1"];
+ |||;
+ a<=b [label="ack3"];
+ |||;
+}
+</pre>
+<div id="chartapi_example3" name="chartapi_canvas">  </div>
+</div>
+
+<hr/>
+<div>
+<div id="chartapi_example4_engine" class="chartapi_hidden">mscgen</div>
+<pre id="chartapi_example4_code" class="chartapi_hidden">
+# Example MSC using boxes
+
+msc {
+
+   # The entities
+   A, B, C, D;
+
+   # Small gap before the boxes
+   |||;
+
+   # Next four on same line due to ','
+   A box A [label="box"],
+   B rbox B [label="rbox"],
+   C abox C [label="abox"],
+   D note D [label="note"];
+
+   # Example of the boxes with filled backgrounds
+   A abox B [label="abox", textbgcolour="#ff7f7f"];
+   B rbox C [label="rbox", textbgcolour="#7fff7f"];
+   C note D [label="note", textbgcolour="#7f7fff"];
+}
+</pre>
+<div id="chartapi_example4" name="chartapi_canvas">  </div>
+</div>
+<script src="/examples.js"> </script>
+</body>
+</html>
