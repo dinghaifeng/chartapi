@@ -16,7 +16,7 @@ def command_line(engine, fingerprint):
 
 def api(request):
 	engine = request.GET.get('engine')
-	code = request.GET.get('code')
+	code = request.GET.get('code').encode('utf-8')
 	action = request.GET.get('action')
 	if engine == '' or engine is None or code == '' or code is None:
 		return HttpResponse('Invalid parameters')
